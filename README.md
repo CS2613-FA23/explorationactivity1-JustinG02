@@ -13,7 +13,7 @@
 <li>Install OpenCV using pip:</li>
 <pre><code>pip install opencv-python</code></pre>
 
-Importing in Your Code:
+<li>Importing in Your Code:</li>
 
 <li>In your Python script, import the OpenCV module:</li>
 import cv2
@@ -28,25 +28,41 @@ Refer to the official OpenCV documentation for detailed information on available
 <p>The purpose of this program is to demonstrate how to install and use OpenCV in Python. It provides a starting point for developers who want to explore computer vision applications.</p>
 
 <h2>4. Sample Input/Output</h2>
-<h3>Input:</h3> <p>An image or video file.</p>
-<h3>Output:</h3> <p>Processed images with applied filters, contours, or other transformations.</p>
+<h3>Input:</h3> <p>An image file.</p>
+<h3>Output:</h3> <p>Processed image with blur applied to detected faces.</p>
 For example:
 
-<pre><code>import cv2
+<pre><code>import numpy as np 
+import cv2 
+import matplotlib.pyplot as plt 
+  
+# Plots given image
+def plotImages(img): 
+    plt.imshow(img, cmap="gray") 
+    plt.axis('off') 
+    plt.style.use('seaborn-v0_8') 
+    plt.show() 
 
-# Read an image from file
-image = cv2.imread('sample_image.jpg')
+# Read image
+image = cv2.imread('my_img.jpg') 
+  
+# Convert image from BGR to RGB
+image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) 
 
-# Convert to grayscale
-gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-
-# Apply edge detection
-edges = cv2.Canny(gray_image, 100, 200)
-
-# Display the results
-cv2.imshow('Original Image', image)
-cv2.imshow('Edges', edges)
-cv2.waitKey(0)
-cv2.destroyAllWindows()</code></pre>
+# Detects faces using classifier found at https://www.geeksforgeeks.org/face-detection-using-cascade-classifier-using-opencv-python/
+face_detect = cv2.CascadeClassifier('haarcascade_frontalface_default.xml') 
+face_data = face_detect.detectMultiScale(image, 1.3, 5) 
+  
+# Draws region around face 
+for (x, y, w, h) in face_data: 
+    cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2) 
+    face = image[y:y+h, x:x+w] 
+    # Apply blur over region
+    face = cv2.GaussianBlur(face, (23, 23), 30) 
+    image[y:y+face.shape[0], x:x+face.shape[1]] = face 
+  
+  
+# Display final image
+plotImages(image)</code></pre>
 
 Remember to replace 'sample_image.jpg' with the actual path to your image file.
