@@ -13,15 +13,15 @@
 <li>Install OpenCV using pip:</li>
 <pre><code>pip install opencv-python</code></pre>
 
-<li>Importing in Your Code:</li>
+<h3>Importing in Your Code:</h3>
 
 <li>In your Python script, import the OpenCV module:</li>
-import cv2
+<pre><code>import cv2</code><pre>
 
 <li>Usage:</li>
 
 Use OpenCV functions for tasks like image manipulation, object detection, face recognition, and more.
-Refer to the official OpenCV documentation for detailed information on available functions and usage examples.
+Refer to the official OpenCV documentation for detailed information on available functions and usage examples. [OpenCV Official Documentation](https://docs.opencv.org/)
 </ol>
 
 <h2>3. Purpose of the Program</h2>
