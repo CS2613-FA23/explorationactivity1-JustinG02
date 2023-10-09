@@ -16,7 +16,7 @@
 <h3>Importing in Your Code:</h3>
 
 <li>In your Python script, import the OpenCV module:</li>
-<pre><code>import cv2</code><pre>
+<pre><code>import cv2</code></pre>
 
 <li>Usage:</li>
 
