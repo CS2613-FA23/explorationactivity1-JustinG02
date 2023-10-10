@@ -53,7 +53,7 @@ image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 face_detect = cv2.CascadeClassifier('haarcascade_frontalface_default.xml') 
 face_data = face_detect.detectMultiScale(image, 1.3, 5) 
   
-# Draws region around face 
+# Draws region around detected face 
 for (x, y, w, h) in face_data: 
     cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2) 
     face = image[y:y+h, x:x+w] 
